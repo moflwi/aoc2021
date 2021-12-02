@@ -32,4 +32,37 @@ public class AoCLibary {
         }
         return count;
     }
+
+    //day2 part1
+    public int getFinalPosition(ArrayList<String[]>list) {
+        int depth = 0;
+        int pos = 0;
+        for(String[] s : list) 
+            if(s[0].equalsIgnoreCase("forward"))
+                pos+= Integer.parseInt(s[1]);
+            else if(s[0].equalsIgnoreCase("down"))
+                depth+= Integer.parseInt(s[1]);
+            else
+                depth-= Integer.parseInt(s[1]);
+        return depth*pos;
+    }
+
+    //day2 part2
+
+    public int getFinalPosition2(ArrayList<String[]>list) {
+        int aim = 0;
+        int depth = 0;
+        int pos = 0;
+        for(String[] s : list) 
+            if(s[0].equalsIgnoreCase("forward")) {
+                pos+= Integer.parseInt(s[1]);
+                depth = depth + (aim * Integer.parseInt(s[1]));
+            }else if(s[0].equalsIgnoreCase("down")) {
+                aim+= Integer.parseInt(s[1]);
+            }else {
+                aim-= Integer.parseInt(s[1]);
+            }
+        return depth*pos;
+    }
+
 }

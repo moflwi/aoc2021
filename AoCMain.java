@@ -9,16 +9,15 @@ public class AoCMain {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         AoCLibary aoCLibary = new AoCLibary();
-        try(BufferedReader br = new BufferedReader(new FileReader("resources\\day1input2.txt"))) {
-            ArrayList<Integer>integers = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader("resources\\day2input1.txt"))) {
+           
             String line = br.readLine();
-        
+            ArrayList<String[]>list = new ArrayList<>();
             while (line != null) {
-                integers.add(Integer.parseInt(line));
+                list.add(line.split(" "));
                 line = br.readLine();
             }
-            System.out.println(aoCLibary.getIncreaseLevels(integers));
-            System.out.println(aoCLibary.getIncreaseLevelsOf3(integers));
+            System.out.println(aoCLibary.getFinalPosition2(list));
         }
     }
     

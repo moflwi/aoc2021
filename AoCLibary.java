@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 public class AoCLibary {
 
@@ -48,7 +50,6 @@ public class AoCLibary {
     }
 
     //day2 part2
-
     public int getFinalPosition2(ArrayList<String[]>list) {
         int aim = 0;
         int depth = 0;
@@ -64,5 +65,35 @@ public class AoCLibary {
             }
         return depth*pos;
     }
+
+    
+
+
+    //day3 part1
+    public int gammaEpsilon(ArrayList<char[]>list) {
+        int[]rate = new int[list.get(0).length];
+        for(int i = 0; i < list.get(0).length;i++) {
+            int zero = 0;
+            int one = 0;
+            for(int j = 0; j < list.size();j++) 
+                if(list.get(j)[i]=='0')
+                    zero++;
+                else
+                    one++;           
+            if(zero>one)
+                rate[i]= 0;
+            else
+                rate[i]= 1;
+        }
+        String gamma = Arrays.toString(rate).replaceAll("\\[|\\]|,|\\s", "");
+        for(int i = 0; i < rate.length; i++)
+            if(rate[i]==0)
+                rate[i]=1;
+            else
+                rate[i]=0;
+        return Integer.parseInt(gamma, 2)*Integer.parseInt(Arrays.toString(rate).replaceAll("\\[|\\]|,|\\s", ""), 2);
+    }
+
+    //day3 part2
 
 }

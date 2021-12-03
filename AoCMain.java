@@ -9,15 +9,15 @@ public class AoCMain {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         AoCLibary aoCLibary = new AoCLibary();
-        try(BufferedReader br = new BufferedReader(new FileReader("resources\\day2input1.txt"))) {
+        try(BufferedReader br = new BufferedReader(new FileReader("resources\\day3input.txt"))) {
            
             String line = br.readLine();
-            ArrayList<String[]>list = new ArrayList<>();
+            ArrayList<char[]>list = new ArrayList<>();
             while (line != null) {
-                list.add(line.split(" "));
+                list.add(line.toCharArray());
                 line = br.readLine();
             }
-            System.out.println(aoCLibary.getFinalPosition2(list));
+            System.out.println(aoCLibary.gammaEpsilon(list));
         }
     }
     

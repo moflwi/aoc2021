@@ -13,11 +13,13 @@ public class AoCMain {
            
             String line = br.readLine();
             ArrayList<char[]>list = new ArrayList<>();
+            ArrayList<char[]>list2 = new ArrayList<>();
             while (line != null) {
                 list.add(line.toCharArray());
+                list2.add(line.toCharArray());
                 line = br.readLine();
             }
-            System.out.println(aoCLibary.gammaEpsilon(list));
+            System.out.println(aoCLibary.getCO2orOxygen(list,list2));
         }
     }
     

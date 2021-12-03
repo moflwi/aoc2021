@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Iterator;
+import java.util.Objects;
 
 public class AoCLibary {
 
@@ -66,9 +68,6 @@ public class AoCLibary {
         return depth*pos;
     }
 
-    
-
-
     //day3 part1
     public int gammaEpsilon(ArrayList<char[]>list) {
         int[]rate = new int[list.get(0).length];
@@ -95,5 +94,78 @@ public class AoCLibary {
     }
 
     //day3 part2
+    public int getCO2orOxygen(ArrayList<char[]>list, ArrayList<char[]>list2) {
+        return Integer.parseInt(Arrays.toString(getOxygen(list)).replaceAll("\\[|\\]|,|\\s", ""), 2)*
+           Integer.parseInt(Arrays.toString(getCO2(list2)).replaceAll("\\[|\\]|,|\\s", ""),2);
+    }
+    //kinda duplicate lol
+    private int[] getCO2(ArrayList<char[]>list) {   
+        int i = 0;
+        while(list.size()>1) {
+            int determiner = getDeterminerCO2(list, i);
+            for(Iterator<char[]>iter = list.iterator(); iter.hasNext();) {
+                char[]row = iter.next();
+                if(row[i]!=determiner && list.size()>1)
+                    iter.remove();
+            }
+            i++;
+        }
+        return asIntArray(list.get(0));
+    }
 
+    private int[] getOxygen(ArrayList<char[]>list) {    
+        int i = 0;
+        while(list.size()>1) {
+            int determiner = getDeterminerOxygen(list, i);
+            for(Iterator<char[]>iter = list.iterator(); iter.hasNext();) {
+                char[]row = iter.next();              
+                if(row[i]!=determiner && list.size()>1) 
+                    iter.remove();                            
+            }
+            i++;           
+        }
+        return asIntArray(list.get(0));
+    }
+
+    private int getDeterminerCO2(ArrayList<char[]>list, int index) { 
+        int zero = 0;
+        int one = 0;
+        int determiner;
+        for(int i = 0; i < list.size();i++) 
+            if(list.get(i)[index]=='0')
+                zero++;
+            else
+                one++;
+        if(zero<=one)
+            determiner=48;
+        else
+            determiner=49;
+        return determiner;
+    }
+
+    private int getDeterminerOxygen(ArrayList<char[]>list, int index) {
+        int zero = 0;
+        int one = 0;
+        int determiner;
+        for(int i = 0; i < list.size();i++) 
+            if(list.get(i)[index]=='0')
+                zero++;
+            else
+                one++;
+        if(zero<=one)
+            determiner=49;
+        else
+            determiner=48;
+        return determiner;
+    }
+
+    private int[] asIntArray(char[] charArray) { 
+        int[]results = new int[charArray.length];
+        for(int i = 0; i < charArray.length;i++)
+            if(charArray[i]=='0')
+                results[i]=0;
+            else
+                results[i]=1;     
+        return results; 
+    } 
 }

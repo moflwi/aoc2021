@@ -201,13 +201,6 @@ public class AoCLibary {
                         count++;
                 }                
         }
-        /*for(int i = 0; i < positions.length; i++) {
-            for (int j = 0; j < positions[i].length; j++) {
-                System.out.print(positions[i][j]+" ");
-            }
-            System.out.println();
-        }*/
-
         return count;
     }
 

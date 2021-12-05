@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Iterator;
-import java.util.Objects;
+
+
 
 public class AoCLibary {
 
@@ -168,4 +168,122 @@ public class AoCLibary {
                 results[i]=1;     
         return results; 
     } 
+
+    //day4 part1
+    
+    //day4 part2
+
+    //day5 part1 and 2
+    public int getVentCount(ArrayList<String[]>list) {
+        ArrayList<Vents> vents = new ArrayList<>();
+        for(String[]s : list) {
+            String[] point1 = s[0].split(",");
+            String[] point2 = s[1].split(",");
+            vents.add(new Vents(Integer.parseInt(point1[0]),Integer.parseInt(point1[1]), Integer.parseInt(point2[0]), Integer.parseInt(point2[1])));        
+        }
+      
+        
+        int count = 0;
+        byte[][] positions = new byte[1000][1000];
+        for(Vents vent : vents) {
+            ArrayList<AoCLibary.Vents.Point> points = vent.comparePoints();
+            ArrayList<AoCLibary.Vents.Point> diaPoints = vent.compareAlsoDiagonal();
+            if(!points.isEmpty())
+                for(AoCLibary.Vents.Point point : points) {
+                    positions[point.getY()][point.getX()]++;                   
+                    if(positions[point.getY()][point.getX()] > 1 && positions[point.getY()][point.getX()] < 3)
+                        count++;
+                }
+            if(!diaPoints.isEmpty())
+                for(AoCLibary.Vents.Point point : diaPoints) {
+                    positions[point.getY()][point.getX()]++;
+                    if(positions[point.getY()][point.getX()] > 1 && positions[point.getY()][point.getX()] < 3)
+                        count++;
+                }                
+        }
+        /*for(int i = 0; i < positions.length; i++) {
+            for (int j = 0; j < positions[i].length; j++) {
+                System.out.print(positions[i][j]+" ");
+            }
+            System.out.println();
+        }*/
+
+        return count;
+    }
+
+    
+
+
+
+    public class Vents {
+        private Point p1;
+        private Point p2;
+        public Vents(int x, int y, int x1, int y1) {
+            p1 = new Point(x,y);
+            p2 = new Point(x1, y1);
+        }
+
+        public Point getP1() {
+            return this.p1;
+        }
+
+        public Point getP2() {
+            return this.p2;
+        }
+
+        public ArrayList<Point> compareAlsoDiagonal() { 
+            ArrayList<Point> points = new ArrayList<>();         
+                if(p1.x < p2.x && p1.y < p2.y) 
+                    for(int i = p1.x, j = p1.y; i <= p2.x && j <= p2.y; i++, j++) 
+                        points.add(new Point(i,j));
+                else if(p1.x < p2.x && p1.y > p2.y)
+                    for(int i = p1.x, j = p1.y; i <= p2.x && j >= p2.y; i++, j--)
+                        points.add(new Point(i,j));
+                else if(p1.x > p2.x && p1.y < p2.y)
+                    for(int i = p1.x, j = p1.y; i >= p2.x && j <= p2.y; i--, j++)
+                        points.add(new Point(i,j));
+                else if(p1.x > p2.x && p1.y > p2.y)
+                    for(int i = p1.x, j = p1.y; i >= p2.x && j >= p2.y; i--, j--)
+                        points.add(new Point(i,j));      
+            return points;
+        }
+        
+        public ArrayList<Point> comparePoints() {
+            ArrayList<Point> points = new ArrayList<>();
+            if(p1.x==p2.x || p1.y == p2.y) 
+                if(p2.x > p1.x || p2.y > p1.y) 
+                    if(p1.x==p2.x)
+                        for(int i = p1.y; i <= p2.y; i++)
+                            points.add(new Point(p1.x, i));
+                    else
+                        for(int i = p1.x; i <= p2.x; i++)
+                            points.add(new Point(i, p1.y));
+                else 
+                    if(p1.x==p2.x) 
+                        for(int i = p1.y; i >= p2.y; i--) 
+                            points.add(new Point(p1.x, i));
+                    else
+                        for(int i = p1.x; i >= p2.x; i--) 
+                            points.add(new Point(i, p1.y));                        
+            return points;
+        }
+
+        private class Point{
+            private int x;
+            private int y;
+            Point(int x, int y) {
+                this.x = x;
+                this.y = y;
+            }
+
+            private int getX() {
+                return this.x;
+            }
+            private int getY() {
+                return this.y;
+            }
+        }
+    }
+
+
 }

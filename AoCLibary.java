@@ -171,7 +171,21 @@ public class AoCLibary {
 
     //day4 part1
     
+
+
+
+
+
+
+
     //day4 part2
+
+
+
+
+
+
+
 
     //day5 part1 and 2
     public int getVentCount(ArrayList<String[]>list) {
@@ -203,10 +217,6 @@ public class AoCLibary {
         }
         return count;
     }
-
-    
-
-
 
     public class Vents {
         private Point p1;
@@ -277,6 +287,10 @@ public class AoCLibary {
             }
         }
     }
+
+
+
+
 
 
 }

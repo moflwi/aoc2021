@@ -70,7 +70,6 @@ public class BingoBoard {
         
     }
 
-
     public void printBoard() {
         for(int i = 0; i < board.length; i++) {
             for(int j = 0; j < board[i].length; j++)
@@ -79,9 +78,4 @@ public class BingoBoard {
         }
         System.out.println();
     }
-
-   
-
-
-
 }

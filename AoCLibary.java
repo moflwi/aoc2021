@@ -169,21 +169,7 @@ public class AoCLibary {
         return results; 
     } 
 
-    //day4 part1
-    
-
-
-
-
-
-
-
-    //day4 part2
-
-
-
-
-
+    //day4 part1 and 2 -> BingoBoard.java
 
 
 

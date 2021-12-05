@@ -10,10 +10,8 @@ public class AoCMain {
 
     public static void main(String[] args) throws FileNotFoundException, IOException {
         AoCLibary aoCLibary = new AoCLibary();
-        try(BufferedReader br = new BufferedReader(new FileReader("resources\\day4input.txt"))) {
-           
+        try(BufferedReader br = new BufferedReader(new FileReader("resources\\day4input.txt"))) {         
             String inputNumbers= br.readLine();
-            //(System.out.println(inputNumbers);
             br.readLine();
             String line = br.readLine();
             ArrayList<String[]> list = new ArrayList<>();
@@ -32,25 +30,16 @@ public class AoCMain {
                 if(line==null && counter==5)
                     bingoBoards.add(new BingoBoard(list));
             }
-            //System.out.println(inputNumbers);
+
             String[]numbers = inputNumbers.split(",");
             for(int i = 0; i < numbers.length;i++){
                 for(BingoBoard bingoBoard : bingoBoards) {
                     if(bingoBoard.hasWon(Integer.parseInt(numbers[i])) && !bingoBoard.hasWonAlready()){
                         System.out.println(bingoBoard.getSum(Integer.parseInt(numbers[i])));
-                        //System.exit(0);
                         bingoBoard.setHasWonAlready();
                     }
                 }
             }
-                
-
-
-
-            //for(BingoBoard bingoBoard : bingoBoards)
-            //  bingoBoard.printBoard();
-            
         }
     }
-    
 }

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Part2",
+            "request": "launch",
+            "mainClass": "Part2",
+            "projectName": "aoc2021_88c871cb"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
